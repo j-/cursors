@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cursors</title>
+
+<p><strong>Red</strong>: Style failed to apply to element</p>
+<p><strong>Blue</strong>: Style successfully applied to element</p>
+
+<ul id="cursors">Requires JavaScript to run</ul>
+
+<script>
+(function () {
+
+const CURSORS = [
+	{
+		"type": "-moz-grab",
+		"matches": [
+			"-moz-grab",
+			"grab"
+		],
+		"category": "grab",
+		"vendor": true
+	},
+	{
+		"type": "-moz-grabbing",
+		"matches": [
+			"-moz-grabbing",
+			"grabbing"
+		],
+		"category": "grab",
+		"vendor": true
+	},
+	{
+		"type": "-moz-zoom-in",
+		"matches": [
+			"-moz-zoom-in",
+			"zoom-in"
+		],
+		"category": "zoom",
+		"vendor": true
+	},
+	{
+		"type": "-moz-zoom-out",
+		"matches": [
+			"-moz-zoom-out",
+			"zoom-out"
+		],
+		"category": "zoom",
+		"vendor": true
+	},
+	{
+		"type": "-webkit-grab",
+		"matches": [
+			"-webkit-grab",
+			"grab"
+		],
+		"category": "grab",
+		"vendor": true
+	},
+	{
+		"type": "-webkit-grabbing",
+		"matches": [
+			"-webkit-grabbing",
+			"grabbing"
+		],
+		"category": "grab",
+		"vendor": true
+	},
+	{
+		"type": "-webkit-zoom-in",
+		"matches": [
+			"-webkit-zoom-in",
+			"zoom-in"
+		],
+		"category": "zoom",
+		"vendor": true
+	},
+	{
+		"type": "-webkit-zoom-out",
+		"matches": [
+			"-webkit-zoom-out",
+			"zoom-out"
+		],
+		"category": "zoom",
+		"vendor": true
+	},
+	{
+		"type": "alias",
+		"matches": [
+			"alias"
+		],
+		"category": "drag-and-drop",
+		"vendor": false
+	},
+	{
+		"type": "all-scroll",
+		"matches": [
+			"all-scroll"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "auto",
+		"matches": [
+			"auto"
+		],
+		"category": "general",
+		"vendor": false
+	},
+	{
+		"type": "cell",
+		"matches": [
+			"cell"
+		],
+		"category": "selection",
+		"vendor": false
+	},
+	{
+		"type": "col-resize",
+		"matches": [
+			"col-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "context-menu",
+		"matches": [
+			"context-menu"
+		],
+		"category": "links-and-status",
+		"vendor": false
+	},
+	{
+		"type": "copy",
+		"matches": [
+			"copy"
+		],
+		"category": "drag-and-drop",
+		"vendor": false
+	},
+	{
+		"type": "crosshair",
+		"matches": [
+			"crosshair"
+		],
+		"category": "selection",
+		"vendor": false
+	},
+	{
+		"type": "default",
+		"matches": [
+			"default"
+		],
+		"category": "general",
+		"vendor": false
+	},
+	{
+		"type": "e-resize",
+		"matches": [
+			"e-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "ew-resize",
+		"matches": [
+			"ew-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "grab",
+		"matches": [
+			"grab"
+		],
+		"category": "grab",
+		"vendor": false
+	},
+	{
+		"type": "grabbing",
+		"matches": [
+			"grabbing"
+		],
+		"category": "grab",
+		"vendor": false
+	},
+	{
+		"type": "help",
+		"matches": [
+			"help"
+		],
+		"category": "links-and-status",
+		"vendor": false
+	},
+	{
+		"type": "inherit",
+		"matches": [
+			"inherit"
+		],
+		"category": "general",
+		"vendor": false
+	},
+	{
+		"type": "initial",
+		"matches": [
+			"initial"
+		],
+		"category": "general",
+		"vendor": false
+	},
+	{
+		"type": "move",
+		"matches": [
+			"move"
+		],
+		"category": "drag-and-drop",
+		"vendor": false
+	},
+	{
+		"type": "n-resize",
+		"matches": [
+			"n-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "ne-resize",
+		"matches": [
+			"ne-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "nesw-resize",
+		"matches": [
+			"nesw-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "no-drop",
+		"matches": [
+			"no-drop"
+		],
+		"category": "drag-and-drop",
+		"vendor": false
+	},
+	{
+		"type": "none",
+		"matches": [
+			"none"
+		],
+		"category": "general",
+		"vendor": false
+	},
+	{
+		"type": "not-allowed",
+		"matches": [
+			"not-allowed"
+		],
+		"category": "drag-and-drop",
+		"vendor": false
+	},
+	{
+		"type": "ns-resize",
+		"matches": [
+			"ns-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "nw-resize",
+		"matches": [
+			"nw-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "nwse-resize",
+		"matches": [
+			"nwse-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "pointer",
+		"matches": [
+			"pointer"
+		],
+		"category": "links-and-status",
+		"vendor": false
+	},
+	{
+		"type": "progress",
+		"matches": [
+			"progress"
+		],
+		"category": "links-and-status",
+		"vendor": false
+	},
+	{
+		"type": "row-resize",
+		"matches": [
+			"row-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "s-resize",
+		"matches": [
+			"s-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "se-resize",
+		"matches": [
+			"se-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "sw-resize",
+		"matches": [
+			"sw-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "text",
+		"matches": [
+			"text"
+		],
+		"category": "selection",
+		"vendor": false
+	},
+	{
+		"type": "unset",
+		"matches": [
+			"unset"
+		],
+		"category": "general",
+		"vendor": false
+	},
+	{
+		"type": "url(\"//plus.google.com/_/favicon?domain=google.com\"), auto",
+		"matches": [
+			"url(\"//plus.google.com/_/favicon?domain=google.com\"), auto"
+		],
+		"category": "custom",
+		"vendor": false
+	},
+	{
+		"type": "vertical-text",
+		"matches": [
+			"vertical-text"
+		],
+		"category": "selection",
+		"vendor": false
+	},
+	{
+		"type": "w-resize",
+		"matches": [
+			"w-resize"
+		],
+		"category": "resize-and-scrolling",
+		"vendor": false
+	},
+	{
+		"type": "wait",
+		"matches": [
+			"wait"
+		],
+		"category": "links-and-status",
+		"vendor": false
+	},
+	{
+		"type": "zoom-in",
+		"matches": [
+			"zoom-in"
+		],
+		"category": "zoom",
+		"vendor": false
+	},
+	{
+		"type": "zoom-out",
+		"matches": [
+			"zoom-out"
+		],
+		"category": "zoom",
+		"vendor": false
+	}
+];
+
+const cursors = document.getElementById('cursors');
+while (cursors.firstChild) {
+	cursors.removeChild(cursors.firstChild);
+}
+
+const list = document.createDocumentFragment();
+
+CURSORS
+	.forEach(function (cursor) {
+		const type = cursor.type;
+		const matches = cursor.matches;
+		const item = document.createElement('li');
+		item.classList.add('cursor-demo');
+		item.dataset.cursor = type;
+		item.style.cursor = type;
+		item.textContent = type;
+		list.appendChild(item);
+
+		const style = item.style.cursor;
+		const isContained = matches.indexOf(style) >= 0;
+		item.classList.add(isContained ? 'style-applied' : 'style-failed');
+	});
+
+cursors.appendChild(list);
+
+})();
+</script>
+
+<style>
+body {
+	font-size: 14px;
+	font-family: Arial, sans-serif;
+}
+#cursors {
+	margin: 0;
+	padding: 0;
+}
+#cursors > .cursor-demo {
+	display: block;
+	margin: 0 0 0.25em;
+	list-style: none;
+}
+.cursor-demo {
+	padding: 1em;
+	font-family: monospace;
+}
+.cursor-demo::before {
+	content: 'cursor: ';
+	color: #888;
+	font-style: italic;
+	pointer-events: none;
+}
+.cursor-demo.style-applied,
+.cursor-demo.style-applied:active,
+.cursor-demo.style-applied:focus {
+	border: 1px solid #bfeaff;
+	background-color: #f2fbff;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.cursor-demo.style-applied:hover {
+	background-color: #e5f6ff;
+}
+.cursor-demo.style-failed,
+.cursor-demo.style-failed:active,
+.cursor-demo.style-failed:focus {
+	border: 1px solid #ffbfbf;
+	background-color: #fff2f2;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.cursor-demo.style-failed:hover {
+	background-color: #ffe5e5;
+}
+</style>
