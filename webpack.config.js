@@ -1,0 +1,50 @@
+var path = require('path');
+
+module.exports = {
+	entry: './src/main.js',
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'bundle.js',
+	},
+	resolve: {
+		extensions: ['', '.js', '.jsx'],
+	},
+	module: {
+		loaders: [
+			{
+				loader: 'babel',
+				include: [
+					path.resolve(__dirname, 'src'),
+				],
+				exclude: [
+					path.resolve(__dirname, 'node_modules'),
+				],
+				test: /\.jsx?$/,
+				query: {
+					plugins: ['transform-runtime'],
+					presets: ['es2015', 'react'],
+				},
+			},
+			{
+				loader: 'style!css',
+				test: /\.css$/,
+			},
+			{
+				// Use CSS Modules for React components
+				loader: 'style!css?modules!less',
+				include: [
+					path.resolve(__dirname, 'src/classes/components'),
+				],
+				test: /\.less$/,
+			},
+			{
+				// Regular LESS loader for general styles
+				loader: 'style!css!less',
+				include: [
+					path.resolve(__dirname, 'src/styles'),
+				],
+				test: /\.less$/,
+			},
+		],
+	},
+};
