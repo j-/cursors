@@ -1,19 +1,13 @@
 import React from 'react';
-import CursorDemo from '../CursorDemo/component';
-
-import CURSORS from '../../data/cursors';
+import { Router, Route, browserHistory } from 'react-router';
+import CursorListPage from '../CursorListPage/component';
 
 export default class Application extends React.Component {
 	render () {
-		const contents = CURSORS.map(({ type, matches, category, vendor }) => {
-			return <CursorDemo
-				key={ type }
-				type={ type }
-				matches={ matches }
-				category={ category }
-				vendor={ vendor }
-			/>;
-		});
-		return <div>{ contents }</div>;
+		return (
+			<Router history={ browserHistory }>
+				<Route path="/" component={ CursorListPage } />
+			</Router>
+		);
 	}
 }
