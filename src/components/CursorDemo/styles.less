@@ -1,0 +1,34 @@
+.demo {
+	padding: 1em;
+	font-family: monospace;
+	margin: 0 0 0.25em;
+
+	&::before {
+		content: 'cursor: ';
+		color: #888;
+		font-style: italic;
+		pointer-events: none;
+	}
+}
+
+.active {
+	composes: demo;
+	border: 1px solid #bfeaff;
+	background-color: #f2fbff;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+	&:hover {
+		background-color: #e5f6ff;
+	}
+}
+
+.inactive {
+	composes: demo;
+	border: 1px solid #ffbfbf;
+	background-color: #fff2f2;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+	&:hover {
+		background-color: #ffe5e5;
+	}
+}
