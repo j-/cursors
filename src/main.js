@@ -1,3 +1,5 @@
+import './styles/main.less';
+
 import CURSORS from './data/cursors';
 
 document.addEventListener('DOMContentLoaded', () => {
