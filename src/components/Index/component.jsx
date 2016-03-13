@@ -7,7 +7,9 @@ export default class Index extends React.Component {
 	render () {
 		return (
 			<div className="container">
-				<PageHeader>Cursors</PageHeader>
+				<PageHeader>
+					<a href="https://github.com/j-/cursors">Cursors</a>
+				</PageHeader>
 				<Navigation />
 				{ this.props.children }
 			</div>
