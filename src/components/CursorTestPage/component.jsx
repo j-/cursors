@@ -57,7 +57,7 @@ export default class CursorTestPage extends React.Component {
 	render () {
 		return (
 			<div>
-				<div>Drop a <code>.cur</code> or <code>.png</code> file onto this page to test it.</div>
+				<p>Drop a <code>.cur</code> or <code>.png</code> file onto this page to test it.</p>
 				<div className="cursorlist">
 					{ this.getCursorPreviews() }
 				</div>
