@@ -1,6 +1,6 @@
 {
   "name": "cursors",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "CSS cursors utility",
   "main": "index.html",
   "scripts": {
