@@ -15,8 +15,8 @@ export default class CursorTestPage extends React.Component {
 	}
 
 	componentWillUnmount() {
-	    window.removeEventListener('dragover', this.handleDragover);
-		window.addEventListener('drop', this.handleDrop);
+		window.removeEventListener('dragover', this.handleDragover);
+		window.removeEventListener('drop', this.handleDrop);
 	}
 
 	handleDragover (e) {
