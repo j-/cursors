@@ -11,6 +11,7 @@ export default class Index extends React.Component {
 					<a href="https://github.com/j-/cursors">Cursors</a>
 				</PageHeader>
 				<Navigation />
+				<br />
 				{ this.props.children }
 			</div>
 		);
