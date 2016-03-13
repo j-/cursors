@@ -9,7 +9,7 @@ module.exports = {
 	resolve: {
 		extensions: ['', '.js', '.jsx'],
 	},
-	devtool: 'inline-source-map',
+	devtool: 'source-map',
 	module: {
 		loaders: [
 			{
