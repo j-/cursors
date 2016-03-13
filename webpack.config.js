@@ -27,6 +27,10 @@ module.exports = {
 				},
 			},
 			{
+				loader: 'file',
+				test: /\.(eot|svg|ttf|woff2?)$/,
+			},
+			{
 				loader: 'style!css',
 				test: /\.css$/,
 			},

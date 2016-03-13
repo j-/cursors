@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import './styles/main.less';
 
 import React from 'react';
